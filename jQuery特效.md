@@ -23,7 +23,7 @@ $("p").toggle("slow")	//缓慢切换
 $(selector).fadeIn(speed, callback)			//淡入
 $(selector).fadeOut(speed, callback)		//淡出
 $(selector).fadeToggle(speed, callback)		//淡入淡出切换
-$(selector).fadeTo(speed, opacity, callback)//
+$(selector).fadeTo(speed, opacity, callback)//渐变为给定的不透明度，0~1
 ```
 
 - opacity：给特效设置为不透明度，范围为：0~1；
@@ -33,4 +33,14 @@ $(selector).fadeTo(speed, opacity, callback)//
 ```javascript
 $(selector).fadeTo("slow", 0.2)
 ```
+
+### 三、滑动
+
+```javascript
+$(selector).slideDown(speed, callback)		//向下滑动
+$(selector).slideUp(speed, callback)		//向上滑动
+$(selector).slideToggle(speed, callback)	//上下滑动切换
+```
+
+### 四、动画
 

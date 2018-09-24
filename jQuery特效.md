@@ -44,3 +44,35 @@ $(selector).slideToggle(speed, callback)	//上下滑动切换
 
 ### 四、动画
 
+```javascript
+$(selector).animate({params}, speed, callback);
+$(selector).stop(stopAll, goToEnd);
+```
+
+- params：形成动画的CSS属性
+- speed：完成效果的时长
+- callback：动画完成之后执行的函数
+- stopAll：默认false，是否清除动画队列
+- goToEnd：默认false，是否立即完成当前动画
+
+示例：
+
+```javascript
+$("button").click(function(){
+    $("div").animate({left:'250px'});
+});
+```
+
+### 五、Chaining
+
+- 通过链接技术，在相同元素上运行多条jQuery命令
+- 浏览器不必重复查找相同的元素
+
+示例：
+
+```javascript
+$("p").css("color", "red")
+    .slideUp(2000)
+    .slideDown(2000);
+```
+

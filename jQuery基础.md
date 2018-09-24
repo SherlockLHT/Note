@@ -35,16 +35,16 @@ $(this).hide()	//隐藏当前元素
 $("p").hide()	//隐藏所有<p>元素
 ```
 
-### 文档就绪时间
+### 文档就绪事件
 
 ```javascript
-$(document).ready(function){
+$(document).ready(function(){
     //js代码
-}
+});
 
-$(function){
+$(function(){
     //js代码
-}
+});
 ```
 
 - 问了防止文档在完全假造之前执行jQuery代码

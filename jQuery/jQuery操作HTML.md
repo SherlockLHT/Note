@@ -67,3 +67,52 @@ $(".a").after($(".c"));
 <div class="c"></div>
 ```
 
+### 三、删除元素
+
+```javascript
+$(selector).remove(condition)	//删除元素
+$(selector).empty()			//清空元素内容，包含子元素
+```
+
+示例：
+
+```javascript
+$("p").remove()			//删除所有p元素
+$("p").remove(".test")	//删除class=test的所有p元素
+$("p").empty()			//清空所有p元素内容
+```
+
+### 四、操作CSS
+
+```javascript
+$(selector).addClass()		//添加一个/多个类
+$(selector).removeClass()	//删除一个/多个类
+$(selector).toggleClass()	//添加/删除一个/多个类，有则删除，没有则添加
+$(selector).css()			//设置/返回样式属性
+```
+
+- 多个类中间用空格隔开
+
+示例：
+
+```javascript
+$("p").addClass("red")			//添加red类
+$("p").addClass("red test")		//添加red和test类
+$("p").css("background-color")	//获取p元素的背景色，若有多个，则返回第一个
+$("p").css("background-color", "red")	//设置所有的p元素的背景色为红色
+$("P").css({"color":"red","font-size":"20"})	//设置所有p元素的多个属性
+```
+
+### 五、尺寸
+
+```javascript
+$(selector).width()			//设置/返回元素宽度，不包括内边距、边框和外边距
+$(selector).height()
+$(selector).innerWidth()	//设置/返回元素宽度，包括内边距
+$(selector).innerHeight()
+$(selector).outerWidth(isContainMargin)	//返回元素宽度，包括内边距和边框
+$(selector).outerHeight(isContainMargin)
+```
+
+- isContainMargin决定是否包含外边距，值：true/false
+

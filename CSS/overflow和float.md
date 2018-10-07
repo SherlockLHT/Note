@@ -15,6 +15,6 @@
 ### 二、overflow: hidden和float浮动的自适应问题
 
 - `overflow: hidden`不仅仅能隐藏溢出，还有能清除浮动；
-- 当使用float之后，box的高度不会被被浮动的对象影响了，即此时，浮动的元素已经脱离了box了；
-- 当使用`overflow:hidden`之后，浮动的元素再次进入box；
+- 当使用`float`之后，box的高度不会被被浮动的对象影响了，即此时，浮动的元素已经脱离了box了；
+- 当使用`overflow:hidden`之后，浮动的元素再次进入box，消除了浮动带来的一些影响；
 

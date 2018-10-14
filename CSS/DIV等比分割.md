@@ -1,3 +1,5 @@
+参考：https://blog.csdn.net/xiaobing_hope/article/details/51285695
+
 实现：子元素对父级div进行等比例分割
 
 ```html

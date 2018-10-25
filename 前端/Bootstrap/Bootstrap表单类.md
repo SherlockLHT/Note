@@ -26,10 +26,14 @@
 | .radio | 用于`<div>`，处理控件和`label`的样式 |
 | .radio-inline | 用于`<label>`包含`<input>`，内联控件 |
 | .input-sm/lg | 适用于`<input>/<textarea><select>`，控制控件高度（更小/更高） |
-| .has-warning | 用于`<div>`，提供验证效果，警告状态（黄色） |
-| .has-error | 错误状态（红色） |
-| .has-success | 成功状态（绿色） |
+| .has-warning/error/success | 用于`<div>`，提供验证效果，警告状态（黄色）/错误状态（红色）/错误状态（红色） |
 | .has-feedback | 表单验证中添加icon |
+| .glyphicon | 使用bootstrap的免费图标 |
+| .glyphicon-ok/warning/remove | 勾号/警告/叉子图标 |
+| .form-control-feedback | ==未知== |
+| .help-block | 信息提示 |
+| .btn | 基础按钮 |
+| .btn-default | 默认样式，可以有几种：primary/success/info/warning/danger/link |
 
 ==在`<form>`中添加`role="form"`，增强语义，一般用于自定义组件==
 
@@ -119,5 +123,37 @@
 - `<fieldset>`中设置了`disabled`属性，整个域都被禁用；
 - 被禁用的域`<fieldset>`中若有`<legend>`，`<legend>`内的控件虽然后禁用样式，但是禁用状态无效；
 
-##### (3)验证状态
+##### (3)验证/提示状态
+
+- 使用类`.has-warning/.has-error/.has-success`来定制验证状态；
+- 使用`bootstrap`的免费图标，需要在控件下方添加`<span>`；
+- 使用`.help-block`实现信息提示块；
+
+示例：
+
+```html
+<form class="form-horizontal" role="form">
+	<div class="form-group has-success has-feedback ">
+		<label class="control-label" for="success">成功状态</label>
+		<input type="text" class="form-control" id="success" placeholder="成功状态">
+        <span class="help-block">输入正确</span>
+		<span class="glyphicon glyphicon-ok form-control-feedback"></span>
+	</div>
+</form>
+```
+
+#### 4、按钮
+
+- 先通过`.btn`类定义一个基础的按钮风格；
+- 在使用`.btn-default`定义不同的按钮风格；
+
+示例：
+
+```html
+<button class="btn btn-default">测试按钮</button>
+<input type="button" class="btn btn-success" value="测试按钮">
+<input type="submit" class="btn btn-info">
+<div class="btn btn-warning">警告按钮</div>
+<span class="btn btn-success">成功按钮</span>
+```
 

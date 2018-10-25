@@ -8,12 +8,12 @@
 | .text-justify/nowrap | 超出部分自动换行/不换行 |
 | .text-lowercase/uppercase | 文本小写/大写 |
 | .text-capitalize | 文本首字母大写 |
-| .initialism | <abbr>元素文本小字体显示，并将小写字母转换为大写字母 |
+| .initialism | `<abbr>`元素文本小字体显示，并将小写字母转换为大写字母 |
 | .blockquote-reverse | 应用右对齐 |
-| .list-unstyled | 处理默认列表样式(<ul>和<ol>)，仅用于直接子列表 |
+| .list-unstyled | 处理默认列表样式(`<ul>`和`<ol>`)，仅用于直接子列表 |
 | .list-inline | 所有列表项放置在同一行 |
-| .dl-horizontal | 浮动和偏移（<dl>和<dt>） |
-| .pre-scollable | <pre>元素可滚动，代码块区域最大高度340px，超出高度出现滚动条 |
+| .dl-horizontal | 浮动和偏移（`<dl>`和`<dt>`） |
+| .pre-scollable | `<pre>`元素可滚动，代码块区域最大高度340px，超出高度出现滚动条 |
 
 #### 一、全局文本样式
 

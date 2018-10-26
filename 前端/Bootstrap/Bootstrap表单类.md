@@ -25,11 +25,12 @@
 | .checkbox-inline | 用于`<label>`包含`<input>`，内联控件 |
 | .radio | 用于`<div>`，处理控件和`label`的样式 |
 | .radio-inline | 用于`<label>`包含`<input>`，内联控件 |
-| .input-sm/lg | 适用于`<input>/<textarea><select>`，控制控件高度（更小/更高） |
-| .has-warning/error/success | 用于`<div>`，提供验证效果，警告状态（黄色）/错误状态（红色）/错误状态（红色） |
+| .input-sm/lg | 适用于`<input>/<textarea><select>`<br>控制控件高度（更小/更高） |
+| .has-warning/error/success | 用于`<div>`，提供验证效果<br>警告状态（黄色）/错误状态（红色）/错误状态（红色） |
 | .has-feedback | 表单验证中添加icon |
-| .glyphicon | 使用bootstrap的免费图标 |
-| .glyphicon-ok/warning/remove | 勾号/警告/叉子图标 |
+| .glyphicon | 使用bootstrap的免费图标，设置统一样式 |
+| .glyphicon-ok/warning/remove | 勾号/警告/叉图标 |
+| .glyphicon-search/asterisk... | 各种图标... |
 | .form-control-feedback | ==未知== |
 | .help-block | 信息提示 |
 
@@ -178,4 +179,46 @@
 <span class="btn btn-success">成功按钮</span>
 ```
 
-#### 5、
+#### 5、图片
+
+- 使用`img-responsive/img-rounded/circle/thumbnail`类来定制图片
+
+示例：
+
+```html
+<div class="col-md-4">
+	<img alt="140*140" src="../images/test.png">
+	<div>默认图片</div>
+</div>
+<div class="col-md-4">
+	<img src="../images/test.png" class="img-responsive">
+	<div>响应式图片</div>
+</div>
+<div class="col-md-4">
+	<img src="../images/test.png" class="img-rounded">
+<div>圆角图片</div>
+</div>
+<div class="col-md-4">
+	<img src="../images/test.png" class="img-circle">
+	<div>圆形图片</div>
+</div>
+<div class="col-md-4">
+	<img src="../images/test.png" class="img-thumbnail">
+	<div>缩略图</div>
+</div>
+```
+
+#### 6、图标
+
+- `Bootstrap`框架提供近200中不同的icon图片，都是使用CSS3的@font-face属性配合字体实现icon效果；
+
+- 使用`.glphicon`类设置图标统一样式；
+- 再使用`.glyphicon-search`等图标类使用相应的图标；
+
+示例：
+
+```html
+<span class="glyphicon glyphicon-search"></span>
+<span class="glyphicon glyphicon-plus"></span>  
+```
+

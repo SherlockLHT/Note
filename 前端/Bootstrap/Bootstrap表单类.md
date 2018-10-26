@@ -32,8 +32,24 @@
 | .glyphicon-ok/warning/remove | 勾号/警告/叉子图标 |
 | .form-control-feedback | ==未知== |
 | .help-block | 信息提示 |
+
+#### 按钮样式类
+| 类 | 说明 |
+| --------- | ----------- |
 | .btn | 基础按钮 |
 | .btn-default | 默认样式，可以有几种：primary/success/info/warning/danger/link |
+| .btn-lg/sm/xs | 定义按钮大小，大/小/超小 |
+| .btn-block | 将按钮的内联属性变为块状属性 |
+
+#### 图像样式类
+
+| 类              | 说明（用于`<img>`标签） |
+| --------------- | ---- |
+| .img-responsive | 响应式图片，针对响应式设计 |
+| .img-rounded | 圆角图片 |
+| .img-circle | 圆形图片 |
+| .img-thumbnail | 缩略图 |
+
 
 ==在`<form>`中添加`role="form"`，增强语义，一般用于自定义组件==
 
@@ -119,9 +135,10 @@
 
 ##### (2)禁用状态
 
-- `Bootstrap`有禁用状态的定制样式，响应的控件添加属性`disable`即可；
+- `Bootstrap`有禁用状态的定制样式，相应的控件添加属性`disable`即可；
 - `<fieldset>`中设置了`disabled`属性，整个域都被禁用；
 - 被禁用的域`<fieldset>`中若有`<legend>`，`<legend>`内的控件虽然后禁用样式，但是禁用状态无效；
+- 
 
 ##### (3)验证/提示状态
 
@@ -146,14 +163,19 @@
 
 - 先通过`.btn`类定义一个基础的按钮风格；
 - 在使用`.btn-default`定义不同的按钮风格；
+- 支持多种标签形式的按钮；
+- 使用类`.btn-lg/sm/xs`定制按钮大小；
+- 使用类`btn-block`类将按钮的内联属性变为块状属性；
+- 可以使用类`.disabled`来定制禁用样式，但是这不影响行为；
 
 示例：
 
 ```html
-<button class="btn btn-default">测试按钮</button>
-<input type="button" class="btn btn-success" value="测试按钮">
-<input type="submit" class="btn btn-info">
-<div class="btn btn-warning">警告按钮</div>
+<button class="btn btn-default btn-lg">测试按钮</button>
+<input type="button" class="btn btn-success btn-sm" value="测试按钮">
+<input type="submit" class="btn btn-info btn-xs">
+<div class="btn btn-warning btn-block">警告按钮</div>
 <span class="btn btn-success">成功按钮</span>
 ```
 
+#### 5、

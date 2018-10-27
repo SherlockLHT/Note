@@ -54,12 +54,23 @@ $(function(){
 ### 选择器
 
 - 以`$("")`开头；
-- 内部元素选取方式和JavaScript相同；
+- 内部元素选取方式和JavaScript类似；
 
 ### 事件
 
 - jQuery是为事件处理特别设计的；
 - 事件即响应；
+- 事件中获取触发事件的元素，`event.target`；
+
+示例：
+
+```javascript
+$(".target").click(function(e){
+    $(e.target).addClass("current");
+});
+```
+
+
 
 ##### 常用的jQuery事件
 

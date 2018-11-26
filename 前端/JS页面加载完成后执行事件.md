@@ -3,7 +3,11 @@
 ##### （1）原生JS方式
 
 ``` javascript
-window.onload = function(){
+document.ready(){	//文档结构加载完成（不包括图片文字等）
+    doSomeThing();
+}
+
+window.onload = function(){	//页面加载完成（包括图片文字等）
     doSomeThing();
 }
 ```

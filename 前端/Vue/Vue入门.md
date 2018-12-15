@@ -1,10 +1,10 @@
-## 声明式渲染
+## 一、使用简介
 
 - 模板语法；
 - 响应式；
 - 绑定时，对该元素及其子元素均有效；
 
-#### （1）绑定数据
+#### （1）声明式渲染 - 绑定数据
 
 **代码示例：**
 
@@ -167,3 +167,39 @@ var app6 = new Vue({
 ```
 
 - `v-model`将表单内容和数据绑定在一起，表单输入改变，绑定的数据跟随改变；
+
+## 二、总结
+
+```html
+<div id="vue-test">
+	<p>{{text_1}}</p>
+    <p>{{text_2}}</p>
+    <p>{{test_function()}}</p>
+</div>
+```
+
+```js
+//构造vue实例
+var app = new Vue({
+    el: '#vue-test',
+    data: {
+      text_1: "text test 1",
+      text_2: "text test 2",
+    },
+    methods: {
+        test_function: function(){
+            return "function test";
+        }
+    }
+});
+```
+
+**说明：**
+
+- 每个`Vue`应用通过实例化`Vue`来实现，`Vue`构造器如上例所示；
+- 构造器参数`el`，值是`DOM`元素的`id`；
+- 所以实例的改动都在`id="vue-test"`的`div`内，`div`外部不受影响；
+- `data`用于定义属性，值为对象；
+- `methods`用于定义函数，值为对象；
+- `{{}}`用于输出对象属性和函数返回值；
+- 访问例子中的`app`实例，`app.text_1`或者`app.$data.text_1`；

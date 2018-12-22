@@ -56,7 +56,7 @@ document.querySelector("button").onclick=function(){
 ```
 
 - `v-bind`特性称为**指令**，以`v-`开头，以表示是`vue`提供的特殊特性，包括下例的`v-if`等；
-- `v-bind:title`表示绑定该元素的`title`属性；
+- `v-bind:title`表示绑定该元素的`title`属性，为单向绑定，即数据改变属性值，属性值不改变数据；
 
 #### （3）条件（`v-if`）
 

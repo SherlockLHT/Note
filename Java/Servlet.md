@@ -50,3 +50,29 @@ request.setCharacterEncoding("utf-8");
 response.setContentType("text/html; charset=UTF-8");
 ```
 
+## 生命周期
+
+**实例化 --> 初始化 --> 提供服务 --> 销毁 --> 被回收**
+
+#### 实例化
+
+- 当浏览器输入一个路径，其对应的servlet被调用的时候，该servlet就会被实例化；
+- 一个servlet只会被实例化一次；
+
+#### 初始化
+
+- 继承自`HttpServlet`，也继承了`init()`方法；
+- `init()`方法是一个实例方法，会在构造函数执行后再执行；
+- `init()`同样只会执行一次；
+
+#### 提供服务
+
+- 执行`service()`方法，通过浏览器传递的信息进行判断，执行`doGet()/doPost()`；
+
+#### 销毁
+
+- 执行`destroy()`方法；
+
+  在如下的几种情况下，会调用`destroy()`方法
+
+  ##### （1）

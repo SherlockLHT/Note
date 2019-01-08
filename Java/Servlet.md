@@ -1,4 +1,4 @@
-## Servlet方法
+## 一、Servlet方法
 
 **Servlet需要提供对应的`doGet()`/`doPost()`方法**
 
@@ -50,7 +50,7 @@ request.setCharacterEncoding("utf-8");
 response.setContentType("text/html; charset=UTF-8");
 ```
 
-## 生命周期
+## 二、生命周期
 
 **实例化 --> 初始化 --> 提供服务 --> 销毁 --> 被回收**
 
@@ -72,7 +72,28 @@ response.setContentType("text/html; charset=UTF-8");
 #### 销毁
 
 - 执行`destroy()`方法；
+- web应用关闭/重启时执行；
 
-  在如下的几种情况下，会调用`destroy()`方法
+#### 被回收
 
-  ##### （1）
+servlet被销毁后，下次GC就会被回收了
+
+## 三、页面跳转
+
+#### 服务端跳转
+
+- 服务端验证密码，访问对应的html文件，把文件内容传给浏览器；
+- 浏览器url不跳转，页面内容改变
+
+```java
+request.getRequestDispatcher("success.html").forward(request, response);
+```
+
+#### 客户端跳转
+
+- 服务端验证密码，发送跳转指令给浏览器，浏览器接受指令，申请对应的html页面，服务端把申请的html文件内容传给浏览器；
+- 浏览器url改变；
+
+```java
+response.sendRedirect("fail.html");
+```

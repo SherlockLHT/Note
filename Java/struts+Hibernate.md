@@ -1,3 +1,4 @@
+[TOC]
 ## 说明
 
 - ***structs*** 的作用是拦截***url*** 请求，分配给不同的***action*** 处理；
@@ -15,30 +16,35 @@
 
 ### 代码结构：
 
+#### Hibernate部分：
+
 1. ***hibernate.cfg.xml***，数据库的配置；
 2. ***Product.java***，作为***bean***，保存 ***name*** 和 ***price*** 数据，以及 ***lowerLimit*** 和 ***upperLimit*** 作为查询时的 ***price*** 上下限；
 3. ***Product.hbm.xml***，***Product*** 属性和数据库的映射配置；
 4. ***ProductDAO.java***，封装***Product***的增删查改操作，操作数据库调用该类即可；
-5. ***web.xml***， ***struts*** 的配置；
-6. ***struts.xml***，***struts*** 的 ***url*** 和 ***action*** 映射和 ***result*** 配置；
-7. ***ProductAction.java***，***struts***的 ***action***，***struts***拦截 ***url*** 之后，分配给指定 ***action***；
-8. 一些 ***html*** 文件，前端页面；
+
+#### struts部分：
+
+1. ***web.xml***， ***struts*** 的配置；
+2. ***struts.xml***，***struts*** 的 ***url*** 和 ***action*** 映射和 ***result*** 配置；
+3. ***ProductAction.java***，***struts***的 ***action***，***struts***拦截 ***url*** 之后，分配给指定 ***action***；
+4. 一些 ***html*** 文件，前端页面；
 
 ### 代码：
 
-##### （1）hibernate.xml
+#### （1）hibernate.xml
 
 ​	配置数据库，位于***src*** 目录下，略。
 
-##### （2）Product.java
+#### （2）Product.java
 
 ​	***product*** 的 ***bean***，有***name***、***price***、***lowerLimit*** 和 ***upperLimit*** 四个属性以及相应的 ***getter*** 和 ***setter***，略；
 
-##### （3）Product.hbm.xml
+#### （3）Product.hbm.xml
 
 ​	***product*** 需要存入数据库的属性和数据库列对应的配置，和 ***Product.java*** 同级目录，略；
 
-##### （4）ProductDAO.java
+#### （4）ProductDAO.java
 
 ​	封装数据库增删查改操作
 
@@ -127,11 +133,11 @@ public class ProductDAO {
 }
 ```
 
-##### （5）web.xml
+#### （5）web.xml
 
 ​	***struts***配置，位于***WEB-INF*** 目录下，略。
 
-##### （6）struts.xml
+#### （6）struts.xml
 
 ​	位于***src*** 目录下；
 
@@ -160,7 +166,7 @@ public class ProductDAO {
 </struts>
 ```
 
-##### （7）ProductAction.java
+#### （7）ProductAction.java
 
 ​	***struts***拦截***url***后，***action*** 接受***struts*** 的分配。
 
@@ -199,7 +205,7 @@ public class ProductAction extends ActionSupport{
 }
 ```
 
-##### （8）html前端文件
+#### （8）html前端文件
 
 ```html
 //index.html

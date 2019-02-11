@@ -5,7 +5,6 @@
 - ***spring*** 负责对象的生命周期，***hibernate*** 负责数据库的封装；
 
 - ***spring + hibernate*** 整合的思路不是两者单纯的结合，而是使用 ***spring*** 框架的 ***HibernateTemplate*** 类；
-
   - 使用 ***HibernateTemplate*** 可以将***Hibernate*** 的持久层访问模块化；
   - ***HibernateTemplate*** 的使用的一个重要原因是不用直接控制事务，也不用操作 ***session*** ；
 

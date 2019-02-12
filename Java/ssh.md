@@ -198,8 +198,8 @@ public class ProductAction {
                 <value>com/how2java/pojo/Product.hbm.xml</value>
             </list>
         </property>
-        <!-- 理论上hibernate.auto=update表示自动更新表结构，但是又是会失效 -->
-        <!-- 此句可解决，原因带查 -->
+        <!-- 理论上hibernate.auto=update表示自动更新表结构，但是有时会失效 -->
+        <!-- 此句可解决，原因待查 -->
         <property name="schemaUpdate">
             <value>true</value>
         </property>

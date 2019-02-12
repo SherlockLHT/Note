@@ -163,7 +163,7 @@ public class ProductAction {
 
 #### （9）applicationContext.xml
 
-​	***productActionBean*** 新增了一个属性 ***scope=“prototype”***，告诉 ***spring***，对于此对象的管理，使用 ***非单例模式*** ，这样上文每次访问该对象，都是不同的对象，用于并发。
+​	***productActionBean*** 新增了一个属性 ***scope=“prototype”***，***scope*** 默认是单例模式，容易串数据，指定 ***prototype*** 是告诉 ***spring***，对于此对象的管理，使用 ***非单例模式*** ，这样上文每次访问该对象，都是不同的对象，用于并发。
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>

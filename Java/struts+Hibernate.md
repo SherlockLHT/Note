@@ -28,7 +28,7 @@
 1. ***web.xml***， ***struts*** 的配置；
 2. ***struts.xml***，***struts*** 的 ***url*** 和 ***action*** 映射和 ***result*** 配置；
 3. ***ProductAction.java***，***struts***的 ***action***，***struts***拦截 ***url*** 之后，分配给指定 ***action***；
-4. 一些 ***html*** 文件，前端页面；
+4. 一些 ***html*** 文件，前端页面，位于 ***WebContent*** 目录下；
 
 ### 代码：
 

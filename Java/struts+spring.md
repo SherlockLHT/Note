@@ -24,7 +24,7 @@
 1. ***ProductAction.java***，***struts*** 的 ***action*** 管理；
 2. ***struts.xml***，负责拦截 ***url***，并分配给 ***action***，并指定 ***objectFactory*** 对象工厂为 ***spring***，即 ***action*** 的创建交由 ***spring*** 进行；
 3. ***web.xml***，配置 ***struts***；
-4. 一些 ***HTML*** 前端文件；
+4. 一些 ***HTML*** 前端文件，位于 ***WebContent*** 目录下；
 
 #### spring部分：
 

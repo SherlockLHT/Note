@@ -93,7 +93,7 @@ SELECT * FROM table_a a RIGHT JOIN table_b b ON a.id=b.aid;
 SELECT * FROM table_a a RIGHT JOIN table_b b ON a.id=b.aid WHERE a.id is null;
 ```
 
-### 6、全连接
+### 4、全连接
 
 **结果：**返回 **左表的所有数据** + **右表的所有数据** + **左右表的共有数据**
 
@@ -113,7 +113,7 @@ SELECT * FROM table_a a RIGHT JOIN table_b b ON a.id=b.aid;
 
 注：虽然 ***UNION*** 前后都会得到重合的数据，但是最后的结果中，不会出现重复数据。
 
-### 7、全外连接
+### 5、全外连接
 
 **结果：**返回 **左表的所有数据** + **右表的所有数据** - **左右表的共有数据**
 

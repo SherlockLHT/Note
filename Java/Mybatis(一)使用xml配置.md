@@ -198,6 +198,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   - ***colection*** 为对多时使用，即结果是一个集合，***ofType*** 指的是集合里面的数据的数据类型，***javaType*** 指的是次属性的数据类型，这里是 ***java.util.ArrayList / list*** ，因为是默认，所以省略了；
   - ***association*** 为对一时使用，即结果是一个属性，所以没有 ***ofType***，只有 ***javaType***；
 - ***sql*** 语句里使用单引号注入结果；
+- ***sql*** 语句里可以使用 ***#{ }*** 使用参数传入，若传入的是类，则也可以使用带有 ***getter*** 的属性；
 
 #### （4）Product.java
 

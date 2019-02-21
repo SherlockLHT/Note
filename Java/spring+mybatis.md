@@ -132,3 +132,15 @@ public class TestSpringMybatis {
 
 **说明：**
 
+```java
+@RunWith(SpringJUnit4ClassRunner.class)
+```
+
+让测试在 **spring** 容器环境下执行，详细知识点日后查询。
+
+```java
+@ContextConfiguration("classpath:applicationContext.xml")
+```
+
+指定 **spring** 配置文件所在的位置。
+

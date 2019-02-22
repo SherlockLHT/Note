@@ -8,15 +8,17 @@
 
 ### 需求
 
-1. 使用**spring**管理**mybatis***事务；
+1. 使用**spring**管理**mybatis**事务；
 2. 完成对数据库的**CURD**操作；
+3. **mybatis** 同时使用注解和**xml**配置两种方式；
 
 ### 代码结构
 
 1. **applicationContext.xml**，**spring**的配置文件，这里还用来配置数据库，因此不再需要**mybatis**的数据库配置文件；
 2. **Category.java**，**category**的实体**bean**；
 3. **CategoryMapper.java**，数据库操作接口；
-4. **TestSpringMybatis.java**，测试类；
+4. **CategoryMapper.xml**，位于**CategorMapper.java**同一个包下，有些复杂的**sql**语句若写在注解里，会导致注解复杂难懂，写在**xml**配置里方便阅读，此文件用于保存不方便写在**mapper**中的**sql**语句；
+5. **TestSpringMybatis.java**，测试类；
 
 ### 代码
 
@@ -103,10 +105,34 @@ public interface CategoryMapper {
     
     @Select("select * from category_ where name like concat('%', #{name}, '%')")
     public List<Category> getCategoriesByName(String name);
+    
+    //此接口的sql写在xml语句中
+    public void updateCategory(Category category);
 }
 ```
 
-#### （4）TestSpringMybatis.java
+#### （4）CategoryMapper.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.how2java.mapper.CategoryMapper">
+    <update id="updateCategory" parameterType="Category">
+        update category_ set name=#{name} where id=#{id}
+    </update>
+</mapper>
+```
+
+**说明：**
+
+- 文件和需要补充 **sql** 语句的接口放在同一个包下；
+- **namespace**为补充 **sql** 语句的接口路径；
+- **id** 为需要补充的接口方法名；
+
+#### （5）TestSpringMybatis.java
 
 ```java
 @RunWith(SpringJUnit4ClassRunner.class)

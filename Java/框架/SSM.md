@@ -16,7 +16,7 @@
 1. **web.xml**，**WEB-INF** 目录下，有两个作用：
    1. 通过 **ContextLoaderListener** 在 **web app** 启动的时候，获取 **applicationContext.xml** 文件名，并进行 **spring** 的初始化工作；
    2. 通过 **DispatcherServlet** 拦截访问请求，即 **springMVC** 的工作机制；
-2. **applicationContext.xml**，**spring** 的配置文件，有四大最用；
+2. **applicationContext.xml**，**spring** 的配置文件，位于 **src** 目录下，有四大作用：
    1. 管理 **service** 的生命周期；
    2. 配置数据库；
    3. 扫描 **mapper**，管理其声明周期；
@@ -87,7 +87,7 @@
 
 具体配置参见各自框架文章的说明。
 
-#### （2）applicationContext.xml**
+#### （2）applicationContext.xml
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>

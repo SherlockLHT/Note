@@ -21,7 +21,7 @@
    2. 配置数据库；
    3. 扫描 **mapper**，管理其声明周期；
    4. 扫描 **sql** 语句；
-3. **springMVC.xml**，**springMVC** 的配置文件，管理 **control** 的生命周期；
+3. **springMVC.xml**，**springMVC** 的配置文件，位于**src** 目录下，管理 **control** 的生命周期；
 4. **Category.java**，实体类；
 5. **CategoryMapper.java**，数据库操作接口；
 6. **CategoryMapper.xml**，和**CategoryMapper.java**同级目录下，配置复杂 **sql** 语句；

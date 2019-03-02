@@ -6,7 +6,7 @@
 
 ### （1）使用下标
 
-- 不写 **patameterType**；
+- 不写 **parameterType**；
 
 ```java
 public List<Product> getProductList(int id, String name, float price);

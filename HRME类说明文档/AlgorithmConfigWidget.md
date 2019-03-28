@@ -1,6 +1,6 @@
 ### 说明
 
-算法配置窗口窗口，作为MVC的C层，和AlgorithmConfigController一起作为MVC模式存在
+算法配置窗口窗口，作为MVC的V层，和AlgorithmConfigController一起作为MVC模式存在
 
 ### 信号
 

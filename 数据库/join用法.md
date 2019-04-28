@@ -131,3 +131,6 @@ UNION
 SELECT * FROM table_a a RIGHT JOIN table_b b ON a.id=b.cid WHERE a.id is null;
 ```
 
+## on 和 where的区别
+
+由上例子可以看出，**on** 作为建立关系的规则，**where** 作为结果的删选，即 **join-on** 检索到数据之后，在根据 **where** 对结果进行删选

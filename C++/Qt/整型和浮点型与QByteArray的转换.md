@@ -66,13 +66,12 @@ int Byte2Int(QByteArray bytes)
 关于浮点数在内存中的存储方式，请参考相关文章，这里不作详细描述，总而言之，浮点数和整型数在内存中是相似的，所以只要将浮点数的内存中的内容直接转换即可
 
 ```c++
-QByteArray Float2Byte(float data, int bits)
+QByteArray Float2Byte(float data)
 {
     QByteArray byte_data;
-    bits = (bits > 4 || bits <= 0)? 4: bits;//1/2/3/4
 
     char* data_char = (char*)&data;
-    for(int index = bits - 1; index >= 0; index--)
+    for(int index = 3; index >= 0; index--)
     {
         byte_data.append(data_char[index]);
     }

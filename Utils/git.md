@@ -158,5 +158,7 @@ git difftool --tool-help	：查看有哪些对比工具可以设置
 #设置对比工具
 git config --global diff.tool bc3
 git config --global difftool.bc3.path "D:/beyond compare 3/bcomp.exe"
+#使用对比工具对比代码
+git difftool 123.h
 ```
 

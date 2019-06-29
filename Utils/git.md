@@ -1,3 +1,5 @@
+[TOC]
+
 - 目前最先进的分布式版本管控系统
 
 ### 一、初始化配置
@@ -145,5 +147,16 @@ build/core/java.mk:20: *** dalvik/dexgen: Invalid LOCAL_SDK_VERSION '4' Choices 
 
 ```
 rm -rf prebuilt;repo sync prebuilt
+```
+
+#### 9、设置对比工具
+
+设置BCompare作为对比工具
+
+```python
+git difftool --tool-help	：查看有哪些对比工具可以设置
+#设置对比工具
+git config --global diff.tool bc3
+git config --global difftool.bc3.path "D:/beyond compare 3/bcomp.exe"
 ```
 

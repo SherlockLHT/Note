@@ -66,6 +66,12 @@ class Logger{
 public:
     Logger(const char *codeFileName, int line, const char *function);
 
+    /*
+     * @brief       初始化
+     * @param[in]   module      模块名
+     * @param[in]   file_name   log文件路径
+     * @note        将模块名和log文件路径绑定，使用时根据模块名区分
+     */
     static void Initlize(const QString& module, const QString& file_name);
 
     static void WriteLog(QtMsgType type, const QString& message);

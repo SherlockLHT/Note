@@ -26,6 +26,9 @@
 #undef qCritical
 #undef qFatal
 
+//注册模块
+#define installModule(module, logPath) Logger::Initlize(module, logPath)
+
 #define qDebug Logger(QT_MESSAGELOG_FILE, QT_MESSAGELOG_LINE, QT_MESSAGELOG_FUNC).debug
 #define qWarning Logger(QT_MESSAGELOG_FILE, QT_MESSAGELOG_LINE, QT_MESSAGELOG_FUNC).warning
 #define qInfo Logger(QT_MESSAGELOG_FILE, QT_MESSAGELOG_LINE, QT_MESSAGELOG_FUNC).info
@@ -252,8 +255,11 @@ void FatalLog::operator<<(const QString &message)
 void main()
 {
     //注册模块名和log存放地址
-    Logger::Initlize("test", "test.log");
-    Logger::Initlize("test2", "test2.log");
+    //Logger::Initlize("test", "test.log");
+    //Logger::Initlize("test2", "test2.log");
+    
+    installModule("test", "test.log");
+    installModule("test2", "test2.log");
 
     //根据模块名，存放不同的log
     qDebug("test2")<<"111";

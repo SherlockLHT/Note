@@ -1,3 +1,5 @@
+[TOC]
+
 ## XML文件简介
 
 - XML - **EX**tensible **M**arkup **L**anguage，可拓展标记语言
@@ -65,4 +67,36 @@ while(!node.isNull())
 	node = node.nextSibling();	//获取同级的结点
 }
 ````
+
+## 写入XML
+
+```c++
+QDomDocument document;
+//xml头部的<?xml version="1.0" encoding="UTF-8"?>
+QDomProcessingInstruction instruction = document.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\"");
+document.appendChild(instruction);
+QDomElement root_node = document.createElement("transpond");//创建根结点
+document.appendChild(root_node);    //添加根结点
+
+QDomElement element = document.createElement("machine");//创建元素结点
+element.setAttribute("type", "machine");
+root_node.appendChild(element);//元素结点添加到根结点下
+
+QDomElement item_element = document.createElement("machine-item");//创建item结点
+item_element.setAttribute("type", "11");
+item_element.setAttribute("name", "22");
+item_element.setAttribute("device-code", "33");
+item_element.setAttribute("ip", "44");
+item_element.setAttribute("sync-time", "55");
+
+//写入文件
+QFile file(pConfigManager->GetMachineInfoFile());
+if(!file.open(QIODevice::ReadWrite | QIODevice::Truncate))
+{
+	return false;
+}
+QTextStream in(&file);
+document.save(in, 4);
+file.close();
+```
 

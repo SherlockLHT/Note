@@ -78,3 +78,4 @@ Window->Show View->Other->Maven->Maven Repositories
 ### 5.1 创建源码目录
 
 若发现生成的项目结构中没有源码的目录，则可以在Java Build Path中手动指定JDK版本即可
+

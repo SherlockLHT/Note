@@ -14,6 +14,9 @@ CONFIG(debug, debug|release){
 
 CONFIG   += c++11 (Qt5)	#支持C++11
 
+RC_ICONS = logo.ico #.exe的logo，仅用于windows
+RC_FILE = my.rc #使用rc资源文件
+
 HEADERS += test.h	#添加头文件
 SOURCES += test.cpp	#添加cpp文件
 
@@ -21,6 +24,16 @@ INCLUDEPATH += $$PWD/../qwt			##添加库包含目录
 LIBS += -L$$PWD/../qwt/lib -lqwt	#添加库，-L后面是目录，-l后面是库文件
 DEPENDPATH += $$PWD/../qwt/lib 		#依赖关系目录
 
-include(../../../Util/util.pri)	#一般用于添加pri文件，添加后，会在项目列表中出现包含的文件列表，没有这个，但是有INCLUDEPATH添加目录，也能构建，但是项目树中不会出现库列表
+#一般用于添加pri文件，添加后，会在项目列表中出现包含的文件列表
+#没有这个，但是有INCLUDEPATH添加目录，也能构建
+#但是项目树中不会出现库列表
+include(../../../Util/util.pri)	
+
+#用于多级项目
+TEMPLATE = subdirs
+SUBDIRS += \
+    Project1\
+    Project2
+Project1.depends = Project2 #项目依赖，1依赖于2，先构建2
 ```
 

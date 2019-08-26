@@ -68,6 +68,15 @@ void setMaxThreadCount(int maxThreadCount)
 - 若没有设定，默认值是最大线程数，可以用：`QThread::idealThreadCount();` 获取；
 
 ```c++
+int	expiryTimeout() const
+void setExpiryTimeout(int expiryTimeout)
+```
+
+- 线程的终结超时；
+- 没有开启，且超过终结时间的线程，会退出，这些线程会根据需要重启开始；
+- 建议在创建线程池后，调用 start() 前设定终结超时；
+
+```c++
 static QThreadPool * QThreadPool::globalInstance();
 ```
 - 全局内存池实例；

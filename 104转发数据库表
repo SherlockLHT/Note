@@ -1,0 +1,77 @@
+
+
+## 重庆市局项目104数据库表
+### addr_type_info
+
+| 字段      | 数据类型 | 长度 | NOT NULL | 注释     |
+| --------- | -------- | ---- | -------- | -------- |
+| type_code | tiny int | 2    | not null | 类型编码 |
+| type_name | vachar   | 50   | not null | 类型名称 |
+
+### function_type_info
+
+| 字段      | 数据类型 | 长度 | NOT NULL | 注释     |
+| --------- | -------- | ---- | -------- | -------- |
+| type_code | tiny int | 2    | not null | 类型编码 |
+| type_name | varchar  | 50   | not null | 类型名称 |
+
+### data_type_info
+
+| 字段      | 数据类型 | 长度 | NOT NULL | 注释     |
+| --------- | -------- | ---- | -------- | -------- |
+| type_code | tiny int | 2    | not null | 类型编码 |
+| type_name | varchar  | 50   | not null | 类型名称 |
+
+### 104_device_type
+
+| 字段      | 数据类型  | 长度 | NOT NULL | 注释            |
+| --------- | --------- | ---- | -------- | --------------- |
+| type_code | small int | 5    | not null | 104设备类型编码 |
+| type_name | varchar   | 50   | not null | 104设备类型名称 |
+
+
+
+
+
+
+
+### slave_info
+
+| 字段          | 数据类型  | 长度 | NOT NULL | 注释                          |
+| ------------- | --------- | ---- | -------- | ----------------------------- |
+| id            | int       | 20   | not null | 唯一自增长id                  |
+| sla_sta_code  | varchar   | 30   | not null | 子站编码，公共体地址          |
+| sla_sta_name  | varchar   | 30   |          | 子站名称                      |
+| ip_addr       | varchar   | 30   | not null | 子站ip地址                    |
+| port          | int       | 5    | not null | 子站服务端口                  |
+| conn_state    | tinyint   | 2    |          | 连接状态                      |
+| company_name  | varchar   | 100  |          | 厂家名称                      |
+| is_enable     | tiny int  | 2    | not null | 是否启用                      |
+| master_code   | int       | 5    | not null | 上级服务编码                  |
+| station_level | tiny int  | 2    | not null | 站点级别 0-设备 1-子站 2-主站 |
+| update_time   | timestamp |      |          | 更新时间                      |
+
+
+
+
+
+
+
+### 104_da_info
+
+| 字段         | 数据类型  | 长度 | NOT NULL | 注释                 |
+| ------------ | --------- | ---- | -------- | -------------------- |
+| id           | int       | 20   | not null | 唯一自增长id           |
+| sla_sta_code | small int | 5    | not null | 子站编号，公共体地址 |
+| info_addr    | big int   | 20   | not null |  信息体地址           |
+| device_type  | small int | 5    | not null |   设备类型             |
+| device_name  | varchar   | 50   |          | 设备名称 |
+| function_type | small int | 5 | not null | 信号类型，1：实时数据；<br>2：报警；3：故障；4：控制 |
+| function_name | varchar | 100 |  | 信号名称 |
+| addr_type | tiny int | 5 | not null | 信息体地址类型，1：YX；2：<br>YC；3：YK；4：YT；5：文件 |
+| data_type | tiny int | 5 | not null | 数据类型 0：短浮点；1：开关量；<br>2：无符号16整形；3：无符号32整形；<br>4：有符号16整形；5：有符号32整形 |
+| update_time | timestamp |      |          | 更新时间 |
+
+
+
+

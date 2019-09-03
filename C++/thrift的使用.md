@@ -157,3 +157,7 @@ int main(int argc, char **argv) {
 ![1567499573543](1567499573543.png)
 
 自此，使用 ***thrift*** 完成一次数据交互，从代码中可以看到，客户端/服务端像调用函数一样进行数据交互，这就是RPC的方便所在。
+
+## 错误集锦
+
+windows下没有PosixThreadFactory类，可以使用BoostThreadFactory代替

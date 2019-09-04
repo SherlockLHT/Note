@@ -19,6 +19,7 @@ Qt：MinGW5.5.1
 thrift的数据结构如下：
 
 ```c++
+//基本类型
 bool：布尔型，4位
 byte：带符号整数，8位
 i16	：带符号整数，18位
@@ -26,7 +27,26 @@ i32	：带符号整数，32位
 i64	：带符号整数，64位
 double：64位浮点型
 string：UTF-8编码的字符串
+//特殊类型
 binary：未经编码的字节流
+//结构体
+struct：公共对象，不能继承
+struct test{
+	1: string name
+}
+//枚举
+enum test{
+	OK = 0,
+	Fail = 1
+}
+//容器
+list：	有序列表
+set:	 无需集合
+map:	 映射数据
+//异常类型
+exception：
+//服务类型
+service：对应服务的类
 ```
 
 ## 使用简介

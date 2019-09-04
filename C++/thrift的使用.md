@@ -40,9 +40,9 @@ enum test{
 	Fail = 1
 }
 //容器
-list：	有序列表
-set:	 无需集合
-map:	 映射数据
+list<T>：	有序列表
+set<T>:	 	 无需集合
+map<T, K>:	 映射数据
 //异常类型
 exception：
 //服务类型

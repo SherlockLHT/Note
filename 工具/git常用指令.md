@@ -126,6 +126,21 @@ git fetch --all
 git reset --hard origin/master
 ```
 
+#### 8、设置对比工具
+
+设置BCompare作为对比工具
+
+```python
+git difftool --tool-help	：查看有哪些对比工具可以设置
+#设置对比工具
+git config --global diff.tool bc3
+git config --global difftool.bc3.path "D:/beyond compare 3/bcomp.exe"
+#使用对比工具对比代码
+git difftool 123.h
+```
+
+
+
 ## 三、常见错误及解决方式
 
 ##### （1）执行git add file_name时出现如下错误：
@@ -166,3 +181,4 @@ A lock file already exists in the repository, which blocks this operation from c
 rm -f .git/index.lock   //linux
 del .git\index.lock     //window
 ```
+

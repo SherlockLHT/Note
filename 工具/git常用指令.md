@@ -182,3 +182,21 @@ rm -f .git/index.lock   //linux
 del .git\index.lock     //window
 ```
 
+## 4、常用技巧
+
+### （1）git push避免每次都输入账户密码
+
+输入指令 **git config --global credential.helper store**
+
+```python
+git config --global credential.helper store
+```
+
+这一步会在目录下的**.gitconfig**文件最后添加
+
+```ini
+[credential]
+    helper = store
+```
+
+再push一次，需要输入账户和密码，并记录下来，下载再push，就不需要在输入了

@@ -9,6 +9,12 @@
 
 > 对于注解，我们可以理解为标签，即对某一个类进行说明的标签
 
+- 提供信息给编译器，使得编译器能够使用注解信息检测错误和警告；
+- 编译阶段处理
+- 运行时的处理
+
+**Spring** 框架就是使用注解的最好的示例
+
 #  二、java内置注解
 
 ```java
@@ -46,9 +52,36 @@ public class Annotation {
 }
 ```
 
-# 三、自定义注解
 
-##  1、自定义注解
+
+# 三、Java预置的注解
+
+Java内置有几个注解
+
+## 1、@Deprecated
+
+- **标记被修饰者已过时，若调用，则在编译时发出警告**；
+
+## 2、@Override
+
+标记被修饰的方法时重载的父类方法
+
+## 3、@SafeVarargs
+
+参数类型安全注解，提醒开发者不要用参数做一些不安全的操作，它的存在会阻止编译器长生unchecked这类的警告；
+
+Java 1.7中加入
+
+## 4、@FunctionalInterface
+
+- **函数式接口注解**，即一个具有一个方法的普通接口；
+- Java 8 中加入；
+
+作用：函数氏接口很容易转换成lambda表达式
+
+# 四、自定义注解
+
+## 1、自定义注解
 
 如下，使用 ***@interface*** 关键字定义一个注解
 
@@ -56,14 +89,16 @@ public class Annotation {
 public @interface Test {
 }
 ```
+
 如下，使用注解
+
 ```java
 @Test
 public classMyTest{
 }
 ```
 
-**注：上例中的注解只是一种示范，其实是错的**
+**注：上例中的注解只是一种示范，其实是不完全的**
 
 ## 2、元注解
 
@@ -80,7 +115,7 @@ public classMyTest{
 @Repeatable
 ```
 
-### （1）@Retention()
+### （1） @Retention
 
 > 从字面上理解为保留期，可以理解为声明周期
 >
@@ -102,11 +137,11 @@ public @interface Test {
 }
 ```
 
-### （2）@Documented
+### （2） @Documented
 
 > 从字面上理解为文档，即和文档有关，作用是激昂注解中的元素包含到Javadoc中去
 
-### （3）@Target()
+### （3） @Target
 
 > 限定注解的使用场景
 >
@@ -119,11 +154,11 @@ public @interface Test {
 3. **ElementType.FIELD**：可以用在属性上
 4. **ElementType.LOCAL_VARIABLE**：可以用在局部变量上
 5. **ElementType.METHOD**：可以用在方法上
-6. **ElementType.PACKAGE**：可以用在方法上
+6. **ElementType.PACKAGE**：可以用在包上
 7. **ElementType.PARAMETER**：可以用在方法内的参数上
 8. **ElementType.TYPE**：可以用在类型上，比如类、接口、枚举
 
-### （4）@Inherited
+### （4） @Inherited
 
 > 继承注解，表示使用该注解的类的此注解能够被子类继承，@Inherited是修饰注解的，表示的是指定注解能够被继承
 
@@ -139,7 +174,7 @@ public class B extends A{}
 
 例子中，注解 **@Test** 被表示可以被继承，即，A使用@Test注解，其子类B虽然没写，但是也默认用用@Test这个注解
 
-### （5）@Repeatable()
+### （5） @Repeatable
 
 > 字面意思是注解可重复，Java1.8加入，可以算是新特性
 >
@@ -166,7 +201,7 @@ public class SuperMan{
 
 ## 3、注解属性
 
- - 注解可以有成员变量，不能有方法
+- 注解可以有成员变量，不能有方法
 - 成员变量可以使用“无形参的方法”形式来声明
 - 注解传参使用 **value=""** 的形式，多个属性之间用 **,**(逗号) 隔开
 - 注解的传参必须是基本数据类型及其数组
@@ -222,32 +257,154 @@ public class MyTest{
 
 上例中，因为注解只有一个参数，则传参时可以直接输入数值，上面两种注解的方式效果是一样的
 
-# 四、Java预置的注解
+# 五、注解的提取
 
-Java内置有几个注解
+上面的篇幅中，我们了解了注解的的使用的使用方式，若是使用内置注解或者别人写好的主机，只需要使用即可。但若是自定义注解，则不免需要在注解内容中进行另一番操作，以达到注解的功能。
 
-## 1、@Deprecated
+## 1、使用反射获取注解
 
-- **标记被修饰者已过时，若调用，则在编译时发出警告**；
+需要获取注解，需要使用Java的反射。
 
-## 2、@Override
+### （1）判断是否使用某个注解
 
-标记被修饰的方法时重载的父类方法
+**使用 *Class* 对象的 *isAnnotationPresent()* 方法**
 
-## 3、SafeVarargs
+```java
+public boolean isAnnotationPresent(Class<? extends Annotation> annotationClass) {}
+```
 
-参数类型安全注解，提醒开发者不要用参数做一些不安全的操作，它的存在会阻止编译器长生unchecked这类的警告；
+### （2）获取注解对象
 
-Java 1.7中加入
+**使用 *getAnnotation()* 或者 *getAnnotations()* 方法**
 
-## 4、FunctionalInterface
+```java
+//获取指定类型的注解 
+public <A extends Annotation> A getAnnotation(Class<A> annotationClass) {}
+```
 
-- **函数式接口注解**，即一个具有一个方法的普通接口；
-- Java 8 中加入；
+```java
+//获取所有注解
+public Annotation[] getAnnotations() {}
+```
 
+### （3）代码示例
 
+以四中自定义的 **Test** 注解为例
 
+```java
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Test {
+    int id() default -1;
+    String message() default "None";
+}
+```
 
+```java
+@Test(id=189)
+public class MyTest{
+    public stativ void main(String[] args){
+        boolean hasTestAnnotation = MyTest.class.isAnnotationPresent(Test.class);
+        if(hasTestAnnotation) {
+            Test testAnnotation = MyTest.class.getAnnotation(Test.class); 
+            System.out.println("is:" + testAnnotation.id());
+            System.out.println("message:" + testAnnotation.message());
+        } else {
+            System.out.println("No @Test annotation");
+        }
+    }
+}
+```
+
+运行输出：
+
+**is:-189**
+**message:None**
+
+上例中，输出 **@Test** 注解的两个属性
+
+需要注意的是，自定义注解时需要使用五个 **元注解** 对自定义的注解进行一些描述，以到达使用的限制
+
+# 六、示例
+
+需求：
+
+1. 有一个类包含一系列接口，需要检查接口是否正确；
+2. 对已经完成的类，改动不能太大；
+
+**需要检查的类**
+
+```java
+public class NeedTestClass {
+    @Test
+    public void fun1() {
+        System.out.println(123);
+    }
+    
+    @Test
+    public void fun2() {
+        int sum = 99 + 88;
+        System.out.println(sum);
+    }
+    
+    @Test
+    public void fun3() {
+        System.out.println(12 / 0);
+    }
+}
+```
+
+**自定义注解**
+
+```java
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Test {
+}
+```
+
+**测试主类**
+
+```java
+import java.lang.reflect.Method;
+
+public class MyTest {
+    public static void main(String args[]) {
+        NeedTestClass targetClass = new NeedTestClass();
+        //获取对象的所有声明的方法
+        Method[] methods = targetClass.getClass().getDeclaredMethods();
+        //遍历对象的方法
+        for(Method method : methods) {
+            //检查每个方法是都有Test注解
+            if(method.isAnnotationPresent(Test.class)) {
+                try {
+                    method.setAccessible(true);
+                    method.invoke(targetClass, null);//执行方法
+                } catch (Exception e) {
+                    // TODO: handle exception
+                    StringBuilder message = new StringBuilder();
+                    message.append("error: ");
+                    message.append(e.getCause().getClass().getSimpleName());
+                    message.append("\n");
+                    message.append(e.getCause().getMessage());
+                    System.out.println(message.toString());
+                }
+            }
+        }
+        System.out.println("end");
+    }
+}
+```
+
+最终运行结果如下：
+
+**123**
+**187**
+**error: ArithmeticException**
+**/ by zero**
+**end**
+
+只有加上 **@Test** 注解的方法才能进行测试
 
 
 

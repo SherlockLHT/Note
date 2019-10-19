@@ -4,7 +4,7 @@
 [=] (int value) mutable throw() -> int { doSomeThing; }
 ```
 
-![](E:\Note\C++\lambda.png)
+![](lambda.png)
 
 1. *capture*子句，又称*lambda-introducer(lambda引出符)*，默认值传递;
 2. 参数列表，可选，和普通函数无异，参数列表为空，则可以省略；

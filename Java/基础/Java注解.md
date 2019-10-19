@@ -1,7 +1,5 @@
 >  参考：https://blog.csdn.net/briblue/article/details/73824058
 
-[TOC]
-
 # 一、简介
 
 - ***Annotation*** 在 **JDK1.5** 之后新增，很多库都基于注解

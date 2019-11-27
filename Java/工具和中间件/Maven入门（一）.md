@@ -14,6 +14,8 @@
 1. 官网下载包：apache-maven-xxx-bin.zip，解压后将目录下的 **bin文件夹** 添加到 **系统环境变量** 中；
 2. 添加完成后，使用 **mvn -v** 即可查看版本；
 
+**注：安装路径上不能出现空格**
+
 ## 3 仓库
 
 - 用于存放项目需要的jar包；
@@ -44,6 +46,17 @@
 同样是 ***setting.xml*** 文件，在 ***mirrors*** 内新增镜像即可，如下：
 
 ![1565423762442](1565423762442.png)
+
+```xml
+<mirror>
+    <id>alimaven</id>
+    <mirrorOf>central</mirrorOf>
+    <name>aliyun maven</name>
+    <url>
+        http://maven.aliyun.com/nexus/content/repositories/central/
+    </url>
+</mirror>
+```
 
 ## 4 使用指令行创建Maven风格的项目
 

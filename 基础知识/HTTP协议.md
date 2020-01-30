@@ -87,7 +87,7 @@ H5新增的事件，改变 **#** 会触发这个事件，
 
 客户端发送一个HTTP的请求到服务器的消息格式包括：请求行（request line）、请求头部（header）、空行和请求数据四个部分，图示如下：
 
-![img](2012072810301161.png)
+![img](http_request.png)
 
 本地简单编写一个web服务器，映射request路径/type，返回一个h1包裹的Hello World，使用Fiddler抓包如下：
 

@@ -1,5 +1,3 @@
-<font size = 3>
-
 # 一、简介
 
 HTTP（HyperText Transfer Protocol），即超文本传输协议。面向应用层，基于TCP/IP协议，默认端口80。
@@ -136,7 +134,7 @@ Cookie: session_id=25b8c6ba2bbd51287bd813f961ad2dfa8f3a8759
 ```
 
 - **HOST** 指出请求的目的地，即域名和端口，这里是IP地址；
-- **Connection: keep-alive** 表示该请求使用长链接，HTTP1.1开始，默认使用长链接，若不适用，则HTTP头中会是 **Connection: close**；
+- **Connection: keep-alive** 表示该请求使用长链接，HTTP1.1开始，默认使用长链接，若不使用，则HTTP头中会是 **Connection: close**；
 - **Cache-Control** 的值可以有两种：**no-cache** 和 **max-age=x**，这里表示想服务器发送http请求确认资源是否有修改；
 - **Upgrade-Insecure-Requests: 1** 表示将http升级成https；
 - **User-Agent** 代表浏览器的标识；
@@ -323,3 +321,22 @@ Date: Sun, 19 Jan 2020 06:33:02 GMT
 | 500        | 服务器内部错误                           |
 | 503        | 服务器当前不能处理客户端的请求           |
 
+# 五、持久连接
+
+HTTP协议使用“请求-应答”模式，即“非Keep-Alive”模式。而当使用“Kepp-Alive”时，就可以保证客户端和服务端的连接持久有效，当出现需要对服务器的后继请求时，能避免重新建立连接。
+
+## 1、如何使用持久连接
+
+HTTP1.0版本中，并没有官方的标准来规定Keep-Alive，所以，Keep-Alive是被附加到HTTP1.0版本的协议中的，即，如果客户端浏览器支持Keep-Alive，那么就在HTTP的请求头中，添加一个字段 **Connection: Keep-Alive**，当服务器收到带有此字段的请求后，就不会断开连接，当客户端再次发送请求时，就是用该条已建立的连接。
+
+而在HTTP1.1的版本中，默认都保持连接，需要在请求中加入 **Connection: close** 告诉服务端不使用Keep-Alive，那么服务端才会在一条请求结束后，关闭连接。
+
+## 2、持久连接的字段
+
+如1中所说，使用字段 **Connection: Keep-Alive** 即可使用长连接，但是长连接不能一直保持，可以使用字段的参数设置长连接的参数
+
+```http
+Keep-Alive: timeout=5, max=100
+```
+
+**timeout=5** 表示长连接保持5秒，**max=100** 表示此长连接最多接受100此请求就断开

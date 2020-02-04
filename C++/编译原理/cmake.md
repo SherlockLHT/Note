@@ -123,6 +123,8 @@ MESSAGE(STATUS "path:" ${DIR_SRC})		#打印信息，STATUS是前面的"-- "
 
 include_directories(${PROJECT_SOURCE_DIR}/include)	#添加头文件路径
 link_directories(${PROJECT_SOURCE_DIR}/libs)		#添加链接库路径
+#添加依赖库，第一个参数是项目名，后面跟依赖库名，不用加后缀，多个库用空格隔开
+target_link_libraries(TestMain ws2_32)	
 
 # 生成依赖库test，第二参数分别表示动态库/静态库/dyld插件，第三个参数是文件
 add_library(test SHARED/STATIC/MODULE test.cpp)

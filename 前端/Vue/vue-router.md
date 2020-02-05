@@ -1,8 +1,8 @@
-##### *Vue Router* 为*Vue*官方的路由库；
+***Vue Router为 Vue 官方的路由库；***
 
-##### *Vue* + *Vue Router*可以创建单页面应用；
+***Vue + Vue Router 可以创建单页面应用；***
 
-##### *Vue Router*用于将*component* 映射到*routes* 然后渲染；
+***Vue Router用于将 component 映射到 routes 然后渲染；***
 
 ## 示例：
 
@@ -45,7 +45,7 @@ const app = new Vue({
 
 ## 动态路由匹配
 
-##### 给路由传参
+**给路由传参**
 
 ```html
 <div id="app">

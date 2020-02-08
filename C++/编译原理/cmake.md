@@ -131,6 +131,7 @@ add_library(test SHARED/STATIC/MODULE test.cpp)
 set(LIBRARY_OUTPUT_PATH ./lib)		#重设lib文件的输出路径
 # 设置动态库版本号，VERSION指动态库版本，SOVERSION指API版本
 set_target_properties(test PROPERTIES VERSION 1.2 SOVERSION 3)
+SET(CMAKE_BUILD_TYPE DEBUG) #构建类型为Debug，不设置默认Release
 
 #判断平台
 IF (WIN32)

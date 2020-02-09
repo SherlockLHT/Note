@@ -16,9 +16,9 @@ collections 模块包含的容器有：
 | namedtuple | 创建一个带有名称的tuple |
 | deque | 双向列表 |
 | ChainMap | dict 列表，将多个dict链接起来 |
-| UserDict | |
-| UserList | |
-| UserString | |
+| UserDict | dict的封装 |
+| UserList | list的封装 |
+| UserString | string的封装 |
 
 # 二、容器类
 

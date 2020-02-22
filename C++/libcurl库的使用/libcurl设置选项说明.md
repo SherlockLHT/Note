@@ -119,3 +119,108 @@ CURLcode curl_easy_setopt(CURL*handle, CURLOPT_MAXREDIRS, long amount)
 CURLE_OK 表示支持HTTP
 
 **CURLE_UNKNOWN_OPTION** 表示不支持
+
+# 7、CURLOPT_POST
+
+接下来的perform使用POST方法进行HTTP request
+
+```c++
+CURLcode curl_easy_setopt(CURL *handle, CURLOPT_POST, long post);
+```
+
+设置并请求之后，如果需要使用其他方法发送请求，则需要设置成对应的方法，否则，同一个句柄都会使用POST方法
+
+**参数：**
+
+设置为1表示，进行常规的HTTP请求
+
+默认为0，表示不使用POST方法
+
+当此参数设置为1时，libcurl会自动将 CURLOPT_NOBODY 和 CURLOPT_HTTPGET 选项设置为0
+
+# 8、CURLOPT_POSTFIELDS
+
+POST 方法中要传递给服务器的完整数据
+
+```c++
+CURLcode curl_easy_setopt(CURL* handle, CURLOPT_POSTFIELDS, char* postdata);
+```
+
+传递的数据要以服务器能处理的格式进行格式化，libcurl不会以任何方法转换或者编码
+
+使用此选项即表示，**CURLOPT_POST** 选项自动设置为1
+
+# 9、CURLOPT_POSTFIELDSIZE
+
+POST的数据的大小
+
+```c++
+CURLcode curl_easy_setopt(CURL *handle, CURLOPT_POSTFIELDSIZE, long size);
+```
+
+**参数：**
+
+设置为-1，则 libcurl 将会使用 strlen() 方法计算size
+
+如果数据size超过2G，则使用 **CURLOPT_POSTFIELDSIZE_LARGE**
+
+**返回值：**
+
+CURLE_OK 表示支持HTTP
+
+CURLE_UNKNOWN_OPTION 表示不支持
+
+# 10、CURLOPT_POSTFIELDSIZE_LARGE
+
+```c++
+CURLcode curl_easy_setopt(CURL *handle, CURLOPT_POSTFIELDSIZE_LARGE, curl_off_t size);
+```
+
+作用同 **CURLOPT_POSTFIELDSIZE**， 当post的数据超过2G时，使用此选项
+
+# 11、CURLOPT_WRITEFUNCTION
+
+用于设置接收数据的回调函数
+
+```c++
+CURLcode curl_easy_setopt(CURL *handle, CURLOPT_WRITEFUNCTION, write_callback);
+```
+
+回调函数声明如下：
+
+```c++
+size_t write_callback(char *ptr, size_t size, size_t nmemb, void *userdata);
+```
+
+设置回调函数之后，一旦接收到 response，就会立即执行此回调方法
+
+**回调函数参数：**
+
+ptr： 数据指针，指向接收到的 response 数据
+
+size：永远是1
+
+nmemb：数据的size
+
+userdata：用于使用 CURLOPT_WRITEDATA 传递进来的自定义指针
+
+回调函数会尽可能多地传递数据，但并不是全部数据，有可能是一个字节，也可能是数千字节。传递的的最大字节数在头文件 **curl.h** 中使用 ***CURL_MAX_WRITE_SIZE*** 定义，默认是16K，
+
+# 12、CURLOPT_WRITEDATA
+
+传递给回调函数的用户自定义指针，用户指针可以是各种类型，传递的时候需要转换成 **void\***
+
+```c++
+CURLcode curl_easy_setopt(CURL *handle, CURLOPT_WRITEDATA, void *pointer);
+```
+
+如果使用 **CURLOPT_WRITEFUNCTION** 选项，则此指针则会是回调函数的第四个参数；
+
+如果没有使用 **CURLOPT_WRITEFUNCTION** 选项，则此指针必须是 **FILE\*** ，因为libcurl在写数据的时候会将此指针传递给 **fwrite**
+
+在 windows 平台下，此选项必须和 **CURLOPT_WRITEFUNCTION** 一起使用，否则会崩溃
+
+**默认：**
+
+默认是一个 **FILE\***  指向stdout，即会在控制台输出数据
+

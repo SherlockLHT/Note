@@ -56,3 +56,42 @@ endif
 
 在官网的下载页面，我们找到对对应的平台，可以看到有好几个链接，后面标记 **binary** 表示这是一个二进制文件，即编译好的，我们只需要进入，下载需要的版本即可，里面包含了需要的库和dll文件，添加到项目中即可。
 
+# 四、linux
+
+以上描述都是在windows系统上，linux下其实也是类似的，想ubuntu等系统尚且能下载到编译好的库文件，而想centos等系统只能用源码方式安装，，那么openssl 的安装比不可少，这里简单介绍一下linux下的安装步骤
+
+linux 下带有 SSL 的源码的构建的指令如下：
+
+```
+./configure --with-ssl
+make
+make install
+```
+
+一般情况下，linux 是不会有ssl 库的，需要手动安装，所以 ./configure --with-ssl 会失败，提示找不到 OpenSSL 库，安装即可
+
+本次以 openssl-1.1.1d 为例，解压后使用以下指令构建即可
+
+```
+./config 或者 ./Configure
+make
+make install
+```
+
+OpenSSL 安装完成之后，再次安装 libcurl 即可，具体问题可以参考源码目录的 **doc/INSTALL.md** 中的说明
+
+libcurl 既然使用SSL功能，则库添加到项目中后，对应的项目也需要添加 SSL 库支持，使用 OpenSSL 即可，CMakeLists.txt 需要修改的内容如下：
+
+```cmake
+target_link_libraries(${PROJECT_NAME} 
+	${PROJECT_SOURCE_DIR}/libs/libcurl.a
+	ssl
+	crypto
+	pthread
+)
+```
+
+除了 libcurl 外，SSL的支持需要 libssl.a 和 libcrypto.a 库
+
+
+

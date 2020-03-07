@@ -1,10 +1,10 @@
 
 
-## XML文件简介
+# XML文件简介
 
 - XML - **EX**tensible **M**arkup **L**anguage，可拓展标记语言
 
-## Qt中加载XML模块
+# Qt中加载XML模块
 
 **.pro** 文件中添加
 
@@ -12,7 +12,7 @@
 QT += xml
 ```
 
-## Qt的XML访问方式
+# Qt的XML访问方式
 引用：https://blog.csdn.net/liang19890820/article/details/52805902
 > Qt 提供了两种访问 XML 文档的方式：DOM 和 SAX。
 >
@@ -20,7 +20,7 @@ QT += xml
 >
 > - SAX 方式：相比于 DOM，SAX 是一种速度更快，更有效的方法，它逐行扫描文档，一边扫描一边解析（由于应用程序只是在读取数据时检查数据，因此不需要将数据存储在内存中，这对于大型文档的解析是个巨大优势）。而且相比于 DOM，SAX 可以在解析文档的任意时刻停止解析。但操作复杂，很难修改 XML 数据。
 
-### DOM
+## DOM
 
 | 类  | 描述     |
 | ---- | ---- |
@@ -47,7 +47,7 @@ QT += xml
 - XML的每级元素（QDomElement），也可以称之为结点（QDomNode），QDomElement继承自QDomNode；
 - QDomNode可以使用`toElement()`方法转换成QDomElement；
 
-#### 常用方法
+### 读取XML
 
 ````c++
 QDomDocument doc("test_xml");
@@ -68,7 +68,7 @@ while(!node.isNull())
 }
 ````
 
-## 写入XML
+### 写入XML
 
 ```c++
 QDomDocument document;

@@ -133,6 +133,10 @@ set(LIBRARY_OUTPUT_PATH ./lib)		#重设lib文件的输出路径
 set_target_properties(test PROPERTIES VERSION 1.2 SOVERSION 3)
 SET(CMAKE_BUILD_TYPE DEBUG) #构建类型为Debug，不设置默认Release
 
+# 项目中添加指定目录下的头文件
+file(GLOB_RECURSE LibFiles "include/*.h")
+add_custom_target(headers SOURCES ${LibFiles})
+
 #判断平台
 IF (WIN32)
 	MESSAGE(STATUS "Now is windows")
@@ -142,4 +146,56 @@ ELSEIF (UNIX)
 	MESSAGE(STATUS "Now is UNIX-like OS's.")
 ENDIF ()
 ```
+
+# 链接库工程
+
+cmake使用链接库比较容易，只需要添加下面两句语句即可
+
+```cmake
+# 生成依赖库test，第二参数分别表示动态库/静态库/dyld插件，第三个参数是文件
+add_library(test SHARED/STATIC/MODULE test.cpp)
+set(LIBRARY_OUTPUT_PATH ./lib)		#重设lib文件的输出路径
+# 设置动态库版本号，VERSION指动态库版本，SOVERSION指API版本
+set_target_properties(test PROPERTIES VERSION 1.2 SOVERSION 3)
+```
+
+**示例1：**
+
+链接库导出函数
+
+```c++
+//test.h
+void TestFunction();
+```
+
+```c++
+//test.cpp
+void TestFunction()
+{
+    cout<<12345<<endl;
+}
+```
+
+**示例2：**
+
+链接库到处类
+
+```c++
+//test.h
+class TestClass
+{
+public:
+    void Function();
+};
+```
+
+```c++
+#include "test.h"
+void TestClass::Function()
+{
+    cout<<"test class function"<<endl;
+}
+```
+
+客户端调用和正常调用一样，include 头文件，直接调用即可，不需要想MSVC那样，使用宏定义
 

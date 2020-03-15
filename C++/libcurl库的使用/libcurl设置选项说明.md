@@ -364,3 +364,13 @@ curl_slist_free_all(header);	//清理curl_slit资源
 从7.58.0开始，libcurl除非使用 **CURLOPT_UNRESTRICTED_AUTH** 明确允许，否则，将阻止 **Authorization** 头发送到第一个以外的主机
 
 从7.64.0开始，libcurl除非使用 **CURLOPT_UNRESTRICTED_AUTH** 明确允许，否则，将阻止 **Cookie** 头发送到第一个以外的主机
+
+# 18、代理
+
+**CURLOPT_PROXY：** 设置代理服务器
+
+**CURLOPT_PROXYTYPE：** 设置代理类型
+
+**CURLOPT_HTTPPROXYTUNNEL：** 若是HTTP请求，设置通道
+
+**CURLOPT_PROXYUSERPWD：** 若需要，设置代理的用户和密码

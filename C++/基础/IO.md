@@ -128,4 +128,14 @@ ofs.open ("test.txt", std::ofstream::out | std::ofstream::app);
 ```c++
 std::cin.ignore(256, ' ');	//提取并删除256个字符，或者直到空格
 ```
+一次读取全部文件：
+```c++
+std::ifstream stream;
+stream.open("test.json");
+stringstream buffer;
+buffer<<stream.rdbuf();
+stream.close();
+
+string jsonStr = buffer.str();
+```
 

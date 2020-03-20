@@ -20,23 +20,78 @@ JsonCpp是最常用的C++解析的Json库，跨平台，开源
 
 头文件在 include/json 目录下，cpp在 src/lib_json 目录下，添加进项目项目即可
 
-# 代码说明：
+# 代码示例
 
-JsonCpp 主要包含三种类型的类：**Value、Reader、Writer**
+## Json对象转换成字符串
 
-JsonCpp的所有数据结构都位于 namespace Json中，在文件 json.h 内，使用时，只需要include json.h 即可
+### 1、序列化
 
-Json::Value 类用于 JSON 数据类型的保存，可以获取某个指定key，并转换成各种数据类型
+```c++
+Json::Value root;
+Json::Value data;
 
-Json::Reader 类用于解析JSON数据
+root["errcode"] = 0;        //key添加整型value
+data["author"] = "sherlock";//key添加字符串的value
+root["data"] = data;        //key添加json类型的value
 
-Json::Writer 类用于生成JSON数据
+Json::String jsonStr = root.toStyledString();//将JSON对象序列化为字符串，有缩进
+```
 
-详细的使用方法参考源码目录下的doc文件，使用doxygen工具可以生成doxygen页面
+### 2、流
 
-下面代码示例只是简单的使用示例
+```c++
+Json::StreamWriterBuilder builder;
+Json::StreamWriter* writer = builder.newStreamWriter();
+writer->write(root, &cout);
 
-## 1、解析JSON示例：
+ofstream stream;
+stream.open("test.json");
+writer->write(root, &stream);	//这里第二个参数传入需要写入的流指针
+stream.close();
+delete writer;
+```
+
+### 3、字符串
+
+jsoncpp新版有所更改，旧方法可以使用，但是编译会有警告
+
+**（1）旧版**
+
+```c++
+Json::FastWriter writer;
+std::string jsonFile = writer.write(root);	//此格式没有缩进
+```
+
+**（2）新版方法**
+
+```c++
+Json::StreamWriterBuilder builder;
+std::string jsonStr = Json::writeString(builder, root);
+```
+
+## Json对象的构建和解析
+
+### 1、从流中获取
+
+```c++
+std::ifstream stream;
+stream.open("test.json");
+
+Json::Value root;
+Json::CharReaderBuilder builder;
+builder["collectComments"] = true;
+
+JSONCPP_STRING error;
+if(!Json::parseFromStream(builder, stream, &root, &error))
+{
+	cout<<error<<endl;
+}
+stream.close();
+```
+
+### 2、通过字符串构建
+
+**旧版：**
 
 ```c++
 Json::Reader reader;
@@ -62,58 +117,20 @@ Json::Value data = root["data"];
 Json::String author = data["author"].asString();
 ```
 
-- 可以使用 **[]** 来获取key的值，失败则创建空的Value；
-- 也可以使用 **get()** 方法获取key的值，可以设置默认值；
-
-## 2、构建JSON示例：
+**新版：**
 
 ```c++
+Json::CharReaderBuilder builder;
+Json::CharReader* reader = builder.newCharReader();
+
 Json::Value root;
-Json::Value data;
-
-root["errcode"] = 0;        //key添加整型value
-data["author"] = "sherlock";//key添加字符串的value
-root["data"] = data;        //key添加json类型的value
-
-Json::String jsonStr = root.toStyledString();//将JSON对象序列化为字符串
-cout<<jsonStr<<endl;
-```
-
-输出结果：
-
-```c++
+JSONCPP_STRING error;
+if(!reader->parse(jsonStr.c_str(), jsonStr.c_str() + jsonStr.length(), &root, &error))
 {
-	"data" :
-	{
-		"author" : "sherlock"
-	},
-	"errcode" : 0
+	cout<<error<<endl;
 }
+delete reader;
 ```
-
-## 3、在数据中插入JSON对象
-
-将2中的 Json::Value 对象输入到数据流中
-
-```c++
-Json::StreamWriterBuilder builder;
-Json::StreamWriter* writer = builder.newStreamWriter();
-writer->write(root, &cout);	//输入到输出流中
-cout<<endl;	//换行并刷新
-```
-
-将2中的对象输入到文件流中
-
-```c++
-Json::StreamWriterBuilder builder;
-Json::StreamWriter* writer = builder.newStreamWriter();
-ofstream stream;
-stream.open("test.json");
-writer->write(root, &stream);
-stream.close();
-```
-
-
 
 
 

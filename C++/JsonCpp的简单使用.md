@@ -18,7 +18,15 @@ JsonCpp是最常用的C++解析的Json库，跨平台，开源
 
 直接使用代码。
 
-头文件在 include/json 目录下，cpp在 src/lib_json 目录下，添加进项目项目即可
+头文件在 include/json 目录下，cpp在 src/lib_json 目录下
+
+使用时，将json文件夹添加到项目目录下，将lib_json文件下的所有文件添加到项目目录下，编译的时候相关cpp会提示找不到头文件，但是头文件就在目录下，因为使用的是<>所以找不到，把当前项目路径添加到项目依赖路径下即可
+
+```cmake
+include_directories(${PROJECT_SOURCE_DIR})
+```
+
+添加进项目项目即可
 
 # 代码示例
 

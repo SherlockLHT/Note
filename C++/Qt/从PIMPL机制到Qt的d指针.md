@@ -1,3 +1,7 @@
+
+
+
+
 # 一、PIMPL机制
 
 **PIMPL** ，即Private Implementation，作用是，实现 **私有化，力图使得头文件对改变不透明**，以达到解耦的目的

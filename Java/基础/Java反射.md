@@ -4,11 +4,13 @@ https://blog.csdn.net/lililuni/article/details/83449088
 
 # 1、概述
 
+# 2、反射原理
 
 
-# 2、反射的使用
 
-## 2.1、使用反射获取类
+# 3、反射的简单使用
+
+## 3.1、使用反射获取类
 
 有三种方式获取 Class 对象：
 
@@ -86,7 +88,7 @@ System.out.println(productClass3==productClass2);	//true
 3. 方法一已经new了对象，还要反射，多此一举；
 4. 方法三使用报名+类名拼成的字符串，灵活，常用；
 
-## 2.2、使用返回获取构造函数
+## 3.2、使用返回获取构造函数创建对象
 
 **测试类：**
 
@@ -172,3 +174,127 @@ private Constructor with name and price
 1#商品
 ```
 
+## 3.3、获取成员属性并修改
+
+- 使用 **getField()** 方法获取 public 属性；
+- 使用 **getDeclaredField()** 方法获取所有属性；
+
+以2.2中的代码测试类为例
+
+```java
+Class productClass = Class.forName("com.study.Product");
+        
+Product product = new Product();
+System.out.println(product.getName());
+
+Field name = productClass.getDeclaredField("name");
+name.setAccessible(true);	//因为是private，所以使用该方法忽略权限
+name.set(product, "2#商品");
+System.out.println(product.getName());
+```
+
+输出：
+
+```
+Constructor
+null
+2#商品
+```
+
+## 3.4、获取成员方法
+
+- 使用 **getMethod()** 方法获取成员；
+- 使用 **invoke()** 方法执行；
+
+以2.2中的代码测试类为例
+
+```java
+Class productClass = Class.forName("com.study.Product");
+
+Product product = new Product();
+System.out.println(product.getName());
+
+Method method = productClass.getMethod("setName", String.class);
+method.invoke(product, "3#商品");
+
+System.out.println(product.getName());
+```
+
+输出：
+
+```
+Constructor
+null
+3#商品
+```
+
+## 3.5、获取main方法
+
+```java
+Class productClass = Class.forName("com.study.Product");
+
+Method method = productClass.getMethod("main", String[].class);
+method.invoke(null, (Object) new String[]{"a", "b"});
+```
+
+# 4、反射的进阶用法
+
+上面列出了反射的一些简单的用法，利用这些简单的用法就可以实现很多复杂的功能，spring 这类框架的的灵魂就是反射
+
+普通的方式new对象、调用函数都需要知道类的内容，而且都是固定的，即代码都是写死的。而从上面的例子中可以看出，获取对象、方法等可以通过函数、方法的字符串名称来实现，这样依赖，我们只需要在程序外控制这些字符串就可以不修改代码从而很灵活地调用方法
+
+## 4.1、通过程序外部配置动态运行
+
+**示例：**
+
+使用配置文件控制new出来的对象
+
+```java
+package com.study;
+public class Teacher {}
+```
+
+```java
+package com.study;
+public class Student {}
+```
+配置文件：
+```
+class: com.study.Teacher
+```
+
+测试类：
+
+```java
+//读取配置文件到变量clssName中
+Class class = Class.forName(className);
+```
+
+如上，class 对象会根据配置文件的改变而改变
+
+## 4.2、通过反射越过泛型检查
+
+泛型是在编译期间作用的，如果泛型检查不过，则编译会失败，例如，想要在一个List中既保存字符串，又保存数字，就会编译出错，但是使用反射就能够实现
+
+示例：
+
+```java
+List<String> list = new ArrayList<>();
+list.add("aaa");
+list.add("bbb");
+//list.add(111);	//这里是不允许的
+Class listClass = list.getClass();
+Method method = listClass.getMethod("add", Object.class);
+method.invoke(list, 111);
+method.invoke(list, 222);
+
+for(Object obj : list){
+	System.out.println(obj);
+}
+```
+
+如上，list指定了 String 类型作为元素成员的类型，添加整型就会出错，但是如果使用反射就可以越过这种检查
+
+# 总结
+
+本文只介绍一些简单的反射只是，关于反射更加巧妙的用法可以自行阅读相关框架的源码

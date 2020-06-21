@@ -322,6 +322,22 @@ public String index2(@RequestBody String requestParam){
 }
 ```
 
+**示例3：**
+
+**@RequestBody** 能够将单一形式的参数转换成Java类，这需要参数的key和java类的属性一对一相同，不同的属性则设置为null
+
+```java
+@RequestMapping(value="/index")
+public String index(@RequestBody Product product){
+	return "aaa";
+}
+```
+
+![image-20200620220724556](image-20200620220724556.png)
+
+如上，执行后，controller 内的参数能够自动解析
+
+
 # 6、@ResponseBody
 
 **@ResponseBody** 注解的作用是将 java 对象转换位 json 格式的数据

@@ -199,3 +199,27 @@ void TestClass::Function()
 
 客户端调用和正常调用一样，include 头文件，直接调用即可，不需要想MSVC那样，使用宏定义
 
+# target_link_libraries
+
+**target_link_libraries** 用于添加链接库（静态库和共享库），静态库只有一个.so，共享库有.so和.a
+
+需要注意，如果没有添加录路径，则添加的库需要指定全路径
+
+## 静态库
+
+静态库只有一个.so文件，只需要添加这个静态库即可，以下几种方法均正确
+
+```cmake
+TARGET_LINK_LIBRARIES(projectName libeng.so)
+TARGET_LINK_LIBRARIES(projectName eng)
+TARGET_LINK_LIBRARIES(projectName -leng)
+```
+
+## 共享库
+
+共享库需要将.a文件添加到项目中
+
+```cmake
+TARGET_LINK_LIBRARIES(projectName libeng.a)
+```
+

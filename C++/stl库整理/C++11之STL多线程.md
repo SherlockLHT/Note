@@ -142,9 +142,35 @@ int main()
 - 使用`this_thread`命名空间中的`sleep_for`或者`sleep_until`函数实现等待；
 - `std::chrono`是一个时间库；
 
+**sleep_for** 用于阻塞一段时间
+
 ```c++
 this_thread.sleep_for(chrono::second(2)); //延时2s
 this_thread::sleep_for(chrono::milliseconds(5000));	//延时5000ms
+```
+**sleep_until** 传入一个具体时间，阻塞知道指定的时间
+
+```c++
+void printCurrentTime(tm* tm){
+    char timeFormat[32] = {0x00};
+    strftime(timeFormat, sizeof(timeFormat), "%Y-%m-%d %H:%M:%S", tm);
+    cout<<timeFormat<<endl;
+}
+```
+
+```c++
+time_t res = time(nullptr);
+tm* tm = localtime(&res);
+
+printCurrentTime(tm);
+tm->tm_min += 1;
+this_thread::sleep_until(chrono::system_clock::from_time_t(mktime(tm)));
+printCurrentTime(tm);
+```
+
+```c++
+2020-10-11 21:05:06	//阻塞前
+2020-10-11 21:06:06	//阻塞后
 ```
 
 ### 三、`join`和`detach`
